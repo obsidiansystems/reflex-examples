@@ -57,9 +57,9 @@ data Example :: * -> * where
   Example_WebSocketChat :: Example ()
 deriving instance Show (Example a)
 
-backendRouteEncoder
+fullRouteEncoder
   :: Encoder (Either Text) Identity (R (FullRoute BackendRoute FrontendRoute)) PageName
-backendRouteEncoder = mkFullRouteEncoder (FullRoute_Backend BackendRoute_Missing :/ ())
+fullRouteEncoder = mkFullRouteEncoder (FullRoute_Backend BackendRoute_Missing :/ ())
   (\case
     BackendRoute_Missing -> PathSegment "missing" $ unitEncoder mempty
     BackendRoute_WebSocketChat -> PathSegment "websocketchat" $ unitEncoder mempty)

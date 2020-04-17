@@ -53,7 +53,7 @@ app r = do
       eRecRespTxt = fmap showMsg msgRecEv
       loggedInEv = fmapMaybe loginEv msgRecEv
     wsRespEv <- fmap switchDyn $ prerender (return never) $ do
-      case checkEncoder backendRouteEncoder of
+      case checkEncoder fullRouteEncoder of
         Left err -> do
           el "div" $ text err
           return never
